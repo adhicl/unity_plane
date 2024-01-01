@@ -14,9 +14,27 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float reloadSpeed = 1f;
 
+    public static PlayerController Instance { get; private set; }
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    [SerializeField] private Vector2 clampWidth;
+    [SerializeField] private Vector2 clampHeight;
+
     // Start is called before the first frame update
     void Start()
-    {
+    {        
         playerTransform = this.GetComponent<Transform>();
     }
 
@@ -49,8 +67,10 @@ public class PlayerController : MonoBehaviour
             cPos.z += speed * Time.deltaTime;
             cRot.x = -20f;
         }
+
         playerTransform.position += cPos;
         playerTransform.eulerAngles = cRot;
+        ClampPlayer();
 
         if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0))
 		{
@@ -67,6 +87,15 @@ public class PlayerController : MonoBehaviour
 		}
     }
 
+    protected void ClampPlayer()
+	{
+        Vector3 cPos = playerTransform.position;
+        if (cPos.x < clampWidth.x) cPos.x = clampWidth.x;
+        if (cPos.x > clampWidth.y) cPos.x = clampWidth.y;
+        if (cPos.z < clampHeight.x) cPos.z = clampHeight.x;
+        if (cPos.z > clampHeight.y) cPos.z = clampHeight.y;
+        playerTransform.position = cPos;
+    }
 
     public delegate void ShootAction(Vector3 position);
     public static event ShootAction OnShoot;
