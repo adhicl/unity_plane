@@ -7,7 +7,7 @@ public class GenericFactory<T> : MonoBehaviour where T : MonoBehaviour
     [SerializeField]
     private T prefab;
 
-    private List<GameObject> _currentStock;
+    protected List<GameObject> _currentStock;
 
     protected void Init()
 	{
@@ -15,6 +15,7 @@ public class GenericFactory<T> : MonoBehaviour where T : MonoBehaviour
 
 	}
 
+    protected int count = 0;
     public T GetObject(Vector3 position)
     {
         T result;
@@ -26,6 +27,8 @@ public class GenericFactory<T> : MonoBehaviour where T : MonoBehaviour
         else
         {
             result = Instantiate(prefab);
+            result.name = "create " + count;
+            count++;
         }
         TurnOn(result, position);
         return result;

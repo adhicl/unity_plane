@@ -57,6 +57,7 @@ public class Bullet : MonoBehaviour
 	{
         KillMe();
 	}
+
 	private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")

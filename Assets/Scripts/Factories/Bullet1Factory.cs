@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Bullet1Factory : GenericFactory<Bullet>
 {
+
 	PlayerController controller;
 
 	private void Awake()
