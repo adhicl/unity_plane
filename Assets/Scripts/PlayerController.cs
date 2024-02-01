@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Zenject;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -14,23 +15,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float reloadSpeed = 1f;
 
-    public static PlayerController Instance { get; private set; }
-    private void Awake()
-    {
-        // If there is an instance, and it's not me, delete myself.
-
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
-
     [SerializeField] private Vector2 clampWidth;
     [SerializeField] private Vector2 clampHeight;
+
+    private MainSceneController mainSceneController;
+
+    [Inject]
+    public void Construct(MainSceneController _main)
+    {
+        mainSceneController = _main;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -101,12 +95,10 @@ public class PlayerController : MonoBehaviour
     public static event ShootAction OnShoot;
     private void ShootBullet()
 	{
-        if (OnShoot != null)
-		{
-            float randomizer = Random.Range(-.25f, .25f);
-            Vector3 addPos = Vector3.forward;
-            addPos.x = randomizer;
-            OnShoot(this.transform.position + addPos);
-		}
+        float randomizer = Random.Range(-.25f, .25f);
+        Vector3 addPos = Vector3.forward;
+        addPos.x = randomizer;
+        Vector3 position = this.transform.position + addPos;
+        mainSceneController.SpawnPlayerBullet(position);
 	}
 }

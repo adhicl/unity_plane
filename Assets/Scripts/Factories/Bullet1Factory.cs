@@ -16,7 +16,7 @@ public class Bullet1Factory : GenericFactory<Bullet>
 	{
 		Bullet newBullet = this.GetObject(startPosition);
 		newBullet.Init();
-		newBullet.SetFactory(this);
+		//newBullet.SetFactory(this);
 		newBullet.SetTrajectory(Vector3.zero, Vector3.forward * 50f);
 	}
 }

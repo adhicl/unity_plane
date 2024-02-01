@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Bullet : MonoBehaviour
 {
@@ -16,14 +17,21 @@ public class Bullet : MonoBehaviour
     private Transform cTrans;
 
     private bool isDead = false;
+    private bool isRemove = false;
     private float timeDead = 0f;
 
     public ParticleSystem cSpark;
     public TrailRenderer cTrail;
 
-    private Bullet1Factory factory;
+    private MainSceneController main;
 
-	public void SetTrajectory(Vector3 rot, Vector3 spd)
+    [Inject]
+    public void Construct(MainSceneController _main)
+    {
+        main = _main;
+    }
+
+    public void SetTrajectory(Vector3 rot, Vector3 spd)
 	{
         defSpeed = spd;
         defRotation = rot;
@@ -34,7 +42,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDead)
+        if (isRemove)
 		{
             timeDead += Time.deltaTime;
             if (timeDead >= killTime)
@@ -45,38 +53,60 @@ public class Bullet : MonoBehaviour
 		else
         {
             if (cTrans != null) cTrans.position += defSpeed * Time.deltaTime;
+            HitOutside();
         }
     }
-
+    /*
     public void SetFactory(Bullet1Factory iFactory)
 	{
         factory = iFactory;
 	}
-
+    //*/
+    /*
     private void OnBecameInvisible()
 	{
         KillMe();
-	}
+    }
+    //*/
+    protected void HitOutside()
+    {
+        Vector3 cPos = cTrans.position;
+        if (cPos.x < -30f || cPos.x > 30f || cPos.z < -7f || cPos.z > 27f)
+        {
+            KillMe();
+        }
+    }
 
-	private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
         {
             cSpark.Play();
-            isDead = true;
+            isRemove = true;
         }
     }
 
 	public void Init()
 	{
         isDead = false;
+        isRemove = false;
         timeDead = 0f;
+        cTrail.Clear();
         cTrans = this.GetComponent<Transform>();
     }
 
     private void KillMe()
 	{
         cTrail.Clear();
-        if (factory) factory.ReturnObject(this);
+        if (!isDead)
+		{
+            main.DespawnBullet(this);
+            isDead = true;
+        }
+            
+    }
+
+    public class Pool : MemoryPool<Bullet>
+    {
     }
 }

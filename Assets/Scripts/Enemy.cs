@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,12 +9,26 @@ public class Enemy : MonoBehaviour
     
     [SerializeField] private float baseHealth;
     [SerializeField] private float shootInterval;
-    [SerializeField] private EnemyBehavior behavior;
 
-    private bool isAlive = false;
+    [SerializeField] private Collider mCollider;
+    [SerializeField] private GameObject mObject;
+    [SerializeField] private ParticleSystem mExplosion;
+
+    private bool isAlive = true;
     private bool isDead = false;
 
-	private void Start()
+    private PlayerController player;
+    private MainSceneController mainSceneController;
+
+    
+    [Inject]
+    public void Construct(PlayerController _player, MainSceneController _main)
+    {
+        player = _player;
+        mainSceneController = _main;
+    }
+
+    private void Start()
 	{
         Init();
 	}
@@ -21,7 +36,12 @@ public class Enemy : MonoBehaviour
 	private void Init()
 	{
         health = baseHealth;
-	}
+        isAlive = true;
+        isDead = false;
+        mObject.SetActive(true);
+        mExplosion.time = 0;
+        mCollider.enabled = true;
+    }
 
     private float timerShoot = 0f;
 	private void Update()
@@ -34,20 +54,31 @@ public class Enemy : MonoBehaviour
             timerShoot = 0f;
             ShootBullet();
 		}
-        //behavior.OnMove(this.transform);
-	}
+
+        //this.transform.LookAt(player.transform.position);
+    }
 
     protected virtual void ShootBullet()
-	{
-        EnemyBullet1Factory.Instance.CreateNewBullet(this.transform.position);
+	{   
+        mainSceneController.SpawnBullet(this.transform);
     }
 
 	private void OnTriggerEnter(Collider other)
     {
         if (!isAlive) return;
+
         if (other.tag == "Bullet")
         {
-            Debug.Log("hit bu bullet");
+            health -= 1;
+            if (health <= 0)
+			{
+                mExplosion.time = 0;
+                mExplosion.Play(true);
+                mObject.gameObject.SetActive(false);
+                isAlive = false;
+                isDead = true;
+                mCollider.enabled = false;
+			}
         }
     }
 
@@ -56,7 +87,6 @@ public class Enemy : MonoBehaviour
         if (!isAlive && !isDead)
         {
             isAlive = true;
-            Debug.Log("turn on"+this.name);
         }
 	}
 
@@ -66,7 +96,6 @@ public class Enemy : MonoBehaviour
 		{            
             isAlive = false;
             isDead = true;
-            Debug.Log("turn off" + this.name);
         }
 	}
 }

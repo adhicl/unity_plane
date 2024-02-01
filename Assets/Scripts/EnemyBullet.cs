@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBullet : MonoBehaviour
+
+public class EnemyBullet : MonoBehaviour, IEnemyBullet
 {
     [SerializeField]
     private float killTime;
@@ -13,7 +14,7 @@ public class EnemyBullet : MonoBehaviour
     protected Transform cTrans;
     protected EnemyBullet1Factory factory;
 
-    private bool isDead = false;
+    protected bool isDead = false;
     private float timeDead = 0f;
 
     private void Start()
@@ -62,9 +63,9 @@ public class EnemyBullet : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            isDead = true;
             cSpark.Play();
             goBullet.SetActive(false);
+            KillMe();
         }
     }
 
@@ -77,7 +78,7 @@ public class EnemyBullet : MonoBehaviour
 
     protected virtual void KillMe()
     {
-        
+        isDead = true;
     }
 
     protected virtual void OnMove()
