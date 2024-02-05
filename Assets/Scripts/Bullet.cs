@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
         defRotation = rot;
 
         cTrans.eulerAngles = rot;
-	}
+    }
 
     // Update is called once per frame
     void Update()
@@ -71,7 +71,7 @@ public class Bullet : MonoBehaviour
     protected void HitOutside()
     {
         Vector3 cPos = cTrans.position;
-        if (cPos.x < -30f || cPos.x > 30f || cPos.z < -7f || cPos.z > 27f)
+        if (cPos.x < -30f || cPos.x > 30f || cPos.z < -20f || cPos.z > 20f)
         {
             KillMe();
         }
@@ -93,6 +93,7 @@ public class Bullet : MonoBehaviour
         timeDead = 0f;
         cTrail.Clear();
         cTrans = this.GetComponent<Transform>();
+        this.GetComponent<Collider>().enabled = true;
     }
 
     private void KillMe()
@@ -100,6 +101,7 @@ public class Bullet : MonoBehaviour
         cTrail.Clear();
         if (!isDead)
 		{
+            this.GetComponent<Collider>().enabled = false;
             main.DespawnBullet(this);
             isDead = true;
         }

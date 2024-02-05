@@ -14,12 +14,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject mObject;
     [SerializeField] private ParticleSystem mExplosion;
 
-    private bool isAlive = true;
+    private bool isAlive = false;
     private bool isDead = false;
 
     private PlayerController player;
     private MainSceneController mainSceneController;
-
     
     [Inject]
     public void Construct(PlayerController _player, MainSceneController _main)
@@ -36,7 +35,7 @@ public class Enemy : MonoBehaviour
 	private void Init()
 	{
         health = baseHealth;
-        isAlive = true;
+        isAlive = false;
         isDead = false;
         mObject.SetActive(true);
         mExplosion.time = 0;
@@ -49,7 +48,7 @@ public class Enemy : MonoBehaviour
         if (!isAlive) return;
 
         timerShoot += Time.deltaTime;
-        if (timerShoot >= shootInterval)
+        if (timerShoot >= shootInterval && shootInterval > 0f)
 		{
             timerShoot = 0f;
             ShootBullet();
@@ -57,6 +56,11 @@ public class Enemy : MonoBehaviour
 
         //this.transform.LookAt(player.transform.position);
     }
+
+    public bool IsAlive()
+	{
+        return isAlive;
+	}
 
     protected virtual void ShootBullet()
 	{   

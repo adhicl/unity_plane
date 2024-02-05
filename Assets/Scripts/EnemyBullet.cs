@@ -48,7 +48,7 @@ public class EnemyBullet : MonoBehaviour, IEnemyBullet
     protected void HitOutside()
     {
         Vector3 cPos = cTrans.position;
-        if (cPos.x < -30f || cPos.x > 30f || cPos.z < -7f || cPos.z > 27f)
+        if (cPos.x < -35f || cPos.x > 35f || cPos.z < -20f || cPos.z > 25f)
         {
             KillMe();
         }

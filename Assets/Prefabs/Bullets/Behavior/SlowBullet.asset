@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98c6fe67fc500f44b44eb1d2fdaeddd, type: 3}
   m_Name: SlowBullet
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 12
