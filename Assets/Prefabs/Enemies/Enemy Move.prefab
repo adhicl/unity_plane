@@ -4922,6 +4922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1404d4f1f40282c418a5a1bacf29e066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  point: 100
   baseHealth: 5
   shootInterval: 2
   mCollider: {fileID: 6753849279539857467}

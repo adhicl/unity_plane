@@ -6,7 +6,8 @@ using Zenject;
 public class Enemy : MonoBehaviour
 {
     private float health;
-    
+
+    [SerializeField] private float point;
     [SerializeField] private float baseHealth;
     [SerializeField] private float shootInterval;
 
@@ -82,6 +83,7 @@ public class Enemy : MonoBehaviour
                 isAlive = false;
                 isDead = true;
                 mCollider.enabled = false;
+                mainSceneController.AddPoint(point);
 			}
         }
     }

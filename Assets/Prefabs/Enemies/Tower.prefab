@@ -850,6 +850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1404d4f1f40282c418a5a1bacf29e066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  point: 500
   baseHealth: 10
   shootInterval: 0
   mCollider: {fileID: 972035090019809883}

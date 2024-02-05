@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Transform playerTransform;
+    [SerializeField] private Animator anim;
+
     [SerializeField]
     private float speed = 0f;
 
@@ -100,5 +102,10 @@ public class PlayerController : MonoBehaviour
         addPos.x = randomizer;
         Vector3 position = this.transform.position + addPos;
         mainSceneController.SpawnPlayerBullet(position);
+	}
+
+    public void GetHit()
+	{
+        anim.SetTrigger("GetHit");
 	}
 }

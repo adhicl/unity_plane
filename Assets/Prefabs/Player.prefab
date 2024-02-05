@@ -9662,7 +9662,7 @@ Transform:
   - {fileID: 2092144102314291424}
   - {fileID: 2092144100508665684}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2092144102369610318
 BoxCollider:
@@ -9689,11 +9689,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7494faa05e885548b15b613b04e361b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 2092144101380347479}
   speed: 15
   reloadBullet: 1
   reloadSpeed: 0.1
   clampWidth: {x: -28, y: 28}
-  clampHeight: {x: -5, y: 25}
+  clampHeight: {x: -12, y: 27}
 --- !u!1001 &2092144100545985293
 PrefabInstance:
   m_ObjectHideFlags: 0

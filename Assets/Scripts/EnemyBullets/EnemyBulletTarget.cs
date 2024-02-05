@@ -7,7 +7,6 @@ public class EnemyBulletTarget : EnemyBullet
 	private Vector3 moveDirection;
 
 	private PlayerController player;
-	private MainSceneController main;
 	
 	[Inject]
 	public void Construct(PlayerController _player, MainSceneController _main)

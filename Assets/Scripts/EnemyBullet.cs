@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Zenject;
 
 public class EnemyBullet : MonoBehaviour, IEnemyBullet
 {
@@ -16,6 +16,14 @@ public class EnemyBullet : MonoBehaviour, IEnemyBullet
 
     protected bool isDead = false;
     private float timeDead = 0f;
+
+    protected MainSceneController main;
+
+    [Inject]
+    public void Construct(MainSceneController _main)
+    {
+        main = _main;
+    }
 
     private void Start()
     {
@@ -66,6 +74,7 @@ public class EnemyBullet : MonoBehaviour, IEnemyBullet
             cSpark.Play();
             goBullet.SetActive(false);
             KillMe();
+            main.GetHit();
         }
     }
 
