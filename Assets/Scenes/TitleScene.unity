@@ -324,7 +324,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.4528302, g: 0.35598123, b: 0.091847636, a: 1}
+  m_Color: {r: 0.9150943, g: 0.8554143, b: 0.6863207, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1634,6 +1634,46 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1326142352}
     m_Modifications:
+    - target: {fileID: 1759557576838288230, guid: 86c9a94d828aca146ba4a6f489747f94, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759557576838288230, guid: 86c9a94d828aca146ba4a6f489747f94, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759557576838288230, guid: 86c9a94d828aca146ba4a6f489747f94, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759557576838288230, guid: 86c9a94d828aca146ba4a6f489747f94, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759557576838288230, guid: 86c9a94d828aca146ba4a6f489747f94, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -90.92407
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759557576838288230, guid: 86c9a94d828aca146ba4a6f489747f94, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -322.1405
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759557576838288230, guid: 86c9a94d828aca146ba4a6f489747f94, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -4.185089
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759557576838288230, guid: 86c9a94d828aca146ba4a6f489747f94, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -18.533997
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759557576838288231, guid: 86c9a94d828aca146ba4a6f489747f94, type: 3}
+      propertyPath: m_fontSize
+      value: 22.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759557576838288231, guid: 86c9a94d828aca146ba4a6f489747f94, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1759557577557260502, guid: 86c9a94d828aca146ba4a6f489747f94, type: 3}
       propertyPath: m_Name
       value: Title

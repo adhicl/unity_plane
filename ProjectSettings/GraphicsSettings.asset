@@ -65,3 +65,4 @@ GraphicsSettings:
   m_LogWhenShaderIsCompiled: 0
   m_SRPDefaultSettings:
     UnityEngine.Rendering.HighDefinition.HDRenderPipeline: {fileID: 11400000, guid: bf29b99c7c1b9714689200403b09eb80, type: 2}
+    UnityEngine.Rendering.Universal.UniversalRenderPipeline: {fileID: 11400000, guid: 7be0d0e1c0ec26c49b705321242036ee, type: 2}

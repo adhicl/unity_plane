@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 public class MainSceneController : MonoBehaviour
@@ -69,6 +70,11 @@ public class MainSceneController : MonoBehaviour
         curLife--;
         updateUI();
         player.GetHit();
+
+        if (curLife <= 0)
+		{
+            PauseGame();
+		}
 	}
 
     protected void updateUI()
@@ -107,4 +113,17 @@ public class MainSceneController : MonoBehaviour
         curScore += point;
         updateUI();
 	}
+
+    [SerializeField] private GameObject gEndUI;
+
+    private void PauseGame()
+	{
+        Time.timeScale = 0f;
+        gEndUI.SetActive(true);
+	}
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("TitleScene", LoadSceneMode.Single);
+    }
 }
