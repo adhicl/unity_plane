@@ -1667,8 +1667,31 @@ PrefabInstance:
       value: -18.533997
       objectReference: {fileID: 0}
     - target: {fileID: 1759557576838288231, guid: 86c9a94d828aca146ba4a6f489747f94, type: 3}
+      propertyPath: m_text
+      value: 'This game is made for portfolio purpose.
+
+        All copyright is
+        still belong to original creator.
+
+        3D assets are bought from Unity
+        Asset Store with usage license.
+
+        Music background is from DOVA-SYNDROME,
+        sfx from pixabay.
+
+        Feel free to contact me at https://linkedin.com/in/adhicl
+        for work purpose or any questions. For other game in my porfolio you can
+        check https://adhicl.itch.io/.
+
+        Follow me at twitter @ACL_dev.
+
+
+        Thank
+        you for playing.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759557576838288231, guid: 86c9a94d828aca146ba4a6f489747f94, type: 3}
       propertyPath: m_fontSize
-      value: 22.1
+      value: 19.65
       objectReference: {fileID: 0}
     - target: {fileID: 1759557576838288231, guid: 86c9a94d828aca146ba4a6f489747f94, type: 3}
       propertyPath: m_enableAutoSizing
