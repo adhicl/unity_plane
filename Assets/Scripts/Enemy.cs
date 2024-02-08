@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Collider mCollider;
     [SerializeField] private GameObject mObject;
     [SerializeField] private ParticleSystem mExplosion;
+    [SerializeField] private AudioSource aExplosion;
 
     private bool isAlive = false;
     private bool isDead = false;
@@ -83,6 +84,7 @@ public class Enemy : MonoBehaviour
                 isAlive = false;
                 isDead = true;
                 mCollider.enabled = false;
+                aExplosion.PlayOneShot(aExplosion.clip);
                 mainSceneController.AddPoint(point);
 			}
         }
